@@ -1,0 +1,59 @@
+﻿@model AkademiKiraca.Models.adminModel
+
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+   
+
+    <script src="~/Areas/site/Content/Js/jquery-2.1.4.min.js"></script>
+    <script src="~/Areas/site/Content/Js/bootstrap.min.js"></script>
+    <script src="~/Areas/site/Content/Js/pace.min.js"></script>
+    <script src="~/Areas/site/Content/Js/main.js"></script>
+
+    <link href="~/Areas/site/Content/Css/main.css" rel="stylesheet" />
+   
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Admin Giriş</title>
+  
+</head>
+<body>
+    <section class="material-half-bg">
+        <div class="cover"></div>
+    </section>
+    <section class="login-content">
+        <div class="logo">
+        
+        </div>
+        <div class="login-box">
+            @Html.ValidationMessage("LoginIncorrect")
+            @using (Html.BeginForm("Login","Home"))
+            {
+            <div class="login-form">
+                <h3 class="login-head"><i class="fa fa-lg fa-fw fa-user"></i>Admin Giriş</h3>
+                <div class="form-group">
+                    <label class="control-label">E-Mail</label>
+                    @Html.TextBoxFor(model=>model.eMail,new { @class="form-control",placeholder="E-Mail"})
+               @Html.ValidationMessageFor(model=>model.eMail)
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Şifre</label>
+                    @Html.PasswordFor(model => model.password, new { @class="form-control", placeholder = "Şifre" })
+                    @Html.ValidationMessageFor(model => model.password)
+                </div>
+                <div class="form-group">               
+                </div>
+                <div class="form-group btn-container">
+                    <button class="btn btn-primary btn-block"><i class="fa fa-sign-in fa-lg fa-fw"></i>Giriş</button>
+                </div>
+            </div>
+            }         
+        </div>
+    </section>
+</body>
+
+
+</html>

@@ -1,0 +1,69 @@
+﻿@model AkademiKiraca.Models.adminModel
+
+@{
+    ViewBag.Title = "Settings";
+    Layout = "~/Areas/admin/Views/Shared/Layout.cshtml";
+}
+
+<h2>Ayarlar</h2>
+
+
+<hr />
+
+<p>
+    <a href="@Url.Action("createAdmin","Home")"><input type="submit" class="btn btn-default" value="Admin Ekle"></a>
+
+    <a href="@Url.Action("deleteAccount","Home",new { id=Model.id})"><input type="submit" class="btn btn-default" value="Hesabımı Sil" onclick="return confirm('Bu Hesabı Silmek İstediğinizden Emin misiniz?');"></a>
+
+</p>
+@if (ViewBag.message!=null)
+{
+    @ViewBag.message
+}
+    <div class="card user-settings">
+
+        @using (Html.BeginForm("Settings", "Home"))
+        {
+            @Html.AntiForgeryToken()
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="row">
+               
+                    <div class="col-md-8 mb-20">
+                        @Html.LabelFor(model => model.nameSurname, htmlAttributes: new { @class = "control-label col-md-2" , @style="margin-bottom:10px"})
+                        @Html.EditorFor(model => model.nameSurname, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.nameSurname, "", new { @class = "text-danger" })
+                    </div>
+              
+
+
+
+                <div class="col-md-8 mb-20">
+                    @Html.LabelFor(model => model.eMail, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                    @Html.EditorFor(model => model.eMail, new { htmlAttributes = new { @class = "form-control", @style = "width:300px;",@readonly="readonly" } })
+                    @Html.ValidationMessageFor(model => model.eMail, "", new { @class = "text-danger" })
+
+                </div>
+
+                <div class="clearfix"></div>
+                <div class="col-md-8 mb-20">
+                    @Html.LabelFor(model => model.password, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.ActionLink("Şifremi Değiştir", "changePassword")
+                    @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="row mb-10">
+                <div class="col-md-12">
+                    <input type="submit" value="Kaydet" class="btn btn-default" />
+                </div>
+            </div>
+
+        }
+
+    </div>
+
+
+

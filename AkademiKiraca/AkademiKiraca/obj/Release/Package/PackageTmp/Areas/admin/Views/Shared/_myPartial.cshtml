@@ -1,0 +1,107 @@
+﻿@model IEnumerable<AkademiKiraca.Models.SubCategory>
+
+<!-- Side-Nav-->
+
+    <aside class="main-sidebar hidden-print">
+        <section class="sidebar">
+            <div class="user-panel">
+                <div class="pull-left image"><img class="img-circle" src="" alt=""></div>
+                <div class="pull-left info">
+                    <p>@Session["adminName"]</p>
+                    <p class="designation"></p>
+                </div>
+            </div>
+            <!-- Sidebar Menu-->
+            <ul class="sidebar-menu">
+                <li class="active"><a href="@Url.Action("Index","Home")"><i class="fa fa-dashboard"></i><span>ANA SAYFA</span></a></li>
+
+
+                <li class="treeview">
+                    <a href="#"><i class="fa fa-laptop"></i><span>HAKKIMIZDA</span><i class="fa fa-angle-right"></i></a>
+                    <ul class="treeview-menu">
+
+                        @foreach (var item in Model)
+                        {
+                            if (item.Categoryid == 1)
+                            {
+                                <li><a href="@Url.Action("getSubCategories","Home",new { id=item.id})"><i class="fa fa-circle-o"></i> @item.SubcategoryName</a></li>
+                            }
+
+                        }
+                    </ul>
+                </li>
+
+
+
+
+                <li class="treeview">
+                    <a href="#"><i class="fa fa-edit"></i><span>KAPSAM</span><i class="fa fa-angle-right"></i></a>
+                    <ul class="treeview-menu">
+                        @foreach (var item in Model)
+                        {
+                            if (item.Categoryid == 2)
+                            {
+                                <li><a href="@Url.Action("getSubCategories","Home",new { id=item.id})"><i class="fa fa-circle-o"></i>@item.SubcategoryName</a></li>
+                            }
+
+                        }
+                    </ul>
+                </li>
+
+
+
+
+                <li class="treeview">
+                    <a href="#"><i class="fa fa-th-list"></i><span>FAALİYETLER</span><i class="fa fa-angle-right"></i></a>
+                    <ul class="treeview-menu">
+                        @foreach (var item in Model)
+                        {
+                            if (item.Categoryid == 3)
+                            {
+                                <li><a href="@Url.Action("getSubCategories","Home",new { id=item.id})"><i class="fa fa-circle-o"></i> @item.SubcategoryName</a></li>
+
+                            }
+
+                        }
+                    </ul>
+                </li>
+
+
+
+                <li class="treeview">
+                    <a href="#"><i class="fa fa-file-text"></i><span>İÇ EĞİTİMCİLERİMİZ</span><i class="fa fa-angle-right"></i></a>
+                    <ul class="treeview-menu">
+                        @foreach (var item in Model)
+                        {
+                            if (item.Categoryid == 4)
+                            {
+                                if (item.id == 15)
+                                {
+                                    <li><a href="@Url.Action("educatorList","Home",new { id=item.id})"><i class="fa fa-circle-o"></i> @item.SubcategoryName</a></li>
+                                }
+                                if (item.id == 14)
+                                {
+                                    <li><a href="@Url.Action("getSubCategories","Home",new { id=item.id})"><i class="fa fa-circle-o"></i> @item.SubcategoryName</a></li>
+                                }
+
+                            }
+
+                        }
+                    </ul>
+                </li>
+
+
+
+                <li class="treeview">
+                    <a href="@Url.Action("newsAdmin","Home")"><i class="fa fa-share"></i><span>HABERLER</span></a>
+                </li>
+
+                <li class="treeview">
+                    <a href="@Url.Action("Academy","Home")"><i class="fa fa-share"></i><span>BENİM AKADEMİM</span></a>
+                </li>
+                <li class="treeview">
+                    <a href="@Url.Action("socialMedya","Home")"><i class="fa fa-medium"></i><span>SOSYAL MEDYA</span></a>
+                </li>
+            </ul>
+        </section>
+    </aside>

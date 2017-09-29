@@ -1,0 +1,82 @@
+/* Vertical Accordion Style */
+.va-container{
+	position:relative;
+}
+.va-wrapper{
+	width:1150px;
+	height:1200px;
+	position:relative;
+	overflow:hidden;
+}
+.va-slice{
+	cursor:pointer;
+	position:absolute;
+	width:100%;
+	left:0px;
+	overflow:hidden;
+}
+
+.va-title p{
+	font-size:16px;
+	font-family:Oxygen;
+	font-weight:400;
+	text-align:justify;
+	margin-right:25px;
+	margin-top:20px;
+	line-height:160%;
+}
+.va-content{
+	display:none;
+	margin-left:25px;
+}
+.va-slice p{
+	font-size:16px;
+	font-family:Oxygen;
+	font-weight:400;
+	text-align:justify;
+	margin-right:25px;
+	margin-top:20p;
+	line-height:160%;
+}
+.va-slice ul{
+	margin-top:20px;
+}
+.va-slice ul li{
+	float:left;
+	margin:0px 2px;
+}
+.va-slice ul li a{
+	color:#000;
+	background:#eede2f;
+	padding:3px 6px;
+	font-size:14px;
+	font-family:'PT Sans', sans-serif;
+	text-transform:uppercase;
+}
+.va-slice ul li a:hover{
+	background:#000;
+	color:#fff;
+	text-shadow:none;
+}
+.va-nav span{
+	width:40px;
+	height:25px;
+	background:transparent url(../images/prev.png) no-repeat center center;
+	position:absolute;
+	top:-35px;
+	left:50%;
+	margin-left:-20px;
+	text-indent:-9000px;
+	opacity:0.7;
+	cursor:pointer;
+	display:none;
+	z-index:100;
+}
+.va-nav span.va-nav-next{
+	background-image:url(../images/next.png);
+	top:auto;
+	bottom:-35px;
+}
+.va-nav span:hover{
+	opacity:1.0;
+}

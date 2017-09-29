@@ -1,0 +1,151 @@
+﻿@model AkademiKiraca.Models.subCategoryAdminModel
+@using AkademiKiraca.Models
+@{
+    ViewBag.Title = "getSubCategories";
+    Layout = "~/Areas/admin/Views/Shared/Layout.cshtml";
+}
+
+
+<html>
+
+<head>
+
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+</head>
+
+<body>
+
+
+
+
+
+    <div class="page-title">
+
+        <div>
+            <h2><i class="fa fa-dashboard"></i> @Model.categoryName</h2>
+
+        </div>
+    </div>
+
+
+    @using (Html.BeginForm("dataList", "Home", new { @id = Model.id }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+
+        @Html.AntiForgeryToken()
+
+        <h1>@Model.subCategoryName</h1>
+
+        <div class="form-horizontal">
+
+            <hr />
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.subCategoryName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.subCategoryName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.subCategoryName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="editör-field" style="margin-bottom:0px;">
+                @Html.LabelFor(model => model.description, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.description, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <br />
+            <br />
+
+
+
+         
+
+
+            @foreach (var item in Model.picture)
+                {
+
+                <div class="w3-col l3 s6" style="margin-left:180px;margin-top:30px;">
+                    <div class="w3-container">
+                        <div class="w3-display-container">
+
+
+                            @if (item.Position == 1)
+                            {
+
+                                <span class="w3-tag w3-display-topleft"> Üst Resim </span>
+
+                                <img class="picture1" style="width:250px; height:150px" src="@item.Path" />
+
+                                <div class="w3-display-middle w3-display-hover">
+
+                                    <span style="top:50px; margin-left:85px; font-family:Arial;color:black; font-size:large; background-color:white">Değiştir</span><input style="opacity: 0; height:105px; width:195px" size="55" name="image1" class="file1" type="file" />
+                                </div>
+                            }
+
+                            @if (item.Position == 0)
+                            {
+
+                                <span class="w3-tag w3-display-topleft"> Yan Resim </span>
+
+                                <img class="picture2" style="width:250px; height:150px" src="@item.Path" />
+
+                                <div class="w3-display-middle w3-display-hover">
+
+
+                                    <span style="top:50px; margin-left:85px; font-family:Arial;color:black; font-size:large; background-color:white">Değiştir</span><input style="opacity: 0; height:105px; width:195px" size="55" name="image2" class="file2" type="file" />
+                                </div>
+                            }
+
+
+
+                        </div>
+                    </div>
+
+                </div>
+            }
+
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10" style="left:300px; top:25px;">
+                    <input type="submit" value="Kaydet" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+
+
+
+</body>
+</html>
+
+<script type="text/javascript">
+
+    $.noConflict();
+    $(document).ready(function () {
+
+        $(".file1").change(function (e) {
+            var fotograf = e.target.files[0];
+            var reader = new FileReader();
+            reader.readAsDataURL(fotograf);
+            reader.onload = function (evt) {
+                $(".picture1").attr("src", evt.target.result);
+
+            };
+        });
+
+        $(".file2").change(function (e) {
+
+            var fotograf = e.target.files[0];
+            var reader = new FileReader();
+            reader.readAsDataURL(fotograf);
+            reader.onload = function (evt) {
+                $(".picture2").attr("src", evt.target.result);
+
+            };
+        });
+
+    });
+</script>

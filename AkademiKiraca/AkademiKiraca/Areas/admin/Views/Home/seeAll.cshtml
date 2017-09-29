@@ -1,0 +1,293 @@
+﻿@model IEnumerable<AkademiKiraca.Models.UserMessage>
+@using AkademiKiraca.Models
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/admin/Views/Shared/Layout.cshtml";
+}
+
+
+<div class="content-wrapper" style="margin-left:0px; float:left;">
+
+    <div class="row" style="width:1000px; z-index:1;">
+        <div class="col-md-12">
+            <h2 id="nav-tabs">Mesajlar</h2>
+            <br />
+            <div class="card">
+
+              
+                <ul class="nav nav-tabs" style="width:100%;">
+                    <li class="active"><a href="#home" data-toggle="tab">Okunmamış Mesajlar</a></li>
+                    <li><a href="#profile" data-toggle="tab">Cevaplanmamış Mesajlar</a></li>
+                    <li> <a href="#profile1" data-toggle="tab">Cevaplanmış Mesajlar</a></li>
+
+                </ul>
+
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade active in" id="home">
+
+                        <table cellpadding="0" cellspacing="0" border="0" class="display" id="example">
+                            <thead>
+                                <tr>
+
+                                    <th style="width:15%">
+                                        <p>Adı Soyad</p>
+                                    </th>
+                                    <th style="width:10%">
+                                        <p>E-Mail</p>
+                                    </th>
+                                    <th style="width:10%">
+                                        <p>Telefon</p>
+                                    </th>
+                                    <th style="width:10%">
+                                        <p>Tarih</p>
+                                    </th>
+                                    <th style="width:5%">
+                                        <p>Oku</p>
+                                    </th>
+                                    <th style="width:5%">
+                                        <p>Sil</p>
+                                    </th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td style="border:solid 1px">
+                                            @item.NameSurname
+                                        </td>
+
+                                        <td style="border:solid 1px">
+                                            @item.Email
+
+                                        </td>
+                                        <td style="border:solid 1px">
+                                            @item.Phone
+                                        </td>
+                                        <td style="border:solid 1px">
+                                            @item.Date
+                                        </td>
+                                        <td style="border:solid 1px">
+                                            <a href="@Url.Action("readMessage","Home",new { id=item.id})" class="btn btn-primary">Oku</a>
+                                        </td>
+                                        <td style="border:solid 1px">
+                                            <a href="javascript:;" name="@item.id" class="btn btn-info demoSwal">Sil</a>
+                                        </td>
+
+
+
+                                    </tr>
+                                }
+                            </tbody>
+
+                        </table>
+                    </div>
+
+                    <!-- Cevaplanmamış mesajlar
+      ==================================================-->
+                    @{
+                        var model = (List<UserMessage>)ViewBag.cevapsız;
+                    }
+
+                    <div class="tab-pane fade" id="profile">
+                        <table cellpadding="0" cellspacing="0" border="0" class="display" id="example">
+                            <thead>
+                                <tr>
+
+                                    <th style="width:15%">
+                                        <p>Adı Soyad</p>
+                                    </th>
+                                    <th style="width:10%">
+                                        <p>E-Mail</p>
+                                    </th>
+                                    <th style="width:10%">
+                                        <p>Telefon</p>
+                                    </th>
+                                    <th style="width:10%">
+                                        <p>Tarih</p>
+                                    </th>
+                                    <th style="width:5%">
+                                        <p>Cevapla</p>
+                                    </th>
+                                    <th style="width:5%">
+                                        <p>Sil</p>
+                                    </th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @foreach (var item in model)
+                                {
+                                    <tr>
+                                        <td style="border:solid 1px">
+                                            @item.NameSurname
+                                        </td>
+
+                                        <td style="border:solid 1px">
+                                            @item.Email
+
+                                        </td>
+                                        <td style="border:solid 1px">
+                                            @item.Phone
+                                        </td>
+                                        <td style="border:solid 1px">
+                                            @item.Date
+                                        </td>
+                                        <td style="border:solid 1px">
+                                            <a href="@Url.Action("readMessage","Home",new { id=item.id})" class="btn btn-primary">Cevapla</a>
+                                        </td>
+                                        <td style="border:solid 1px">
+                                            <a href="javascript:;" name="@item.id" class="btn btn-info demoSwal">Sil</a>
+                                        </td>
+
+
+
+                                    </tr>
+                                }
+                            </tbody>
+
+                        </table>
+                    </div>
+
+                    <!-- Cevaplanmış mesajlar
+      ==================================================-->
+
+                    @{
+                        var model1 = (List<UserMessage>)ViewBag.cevaplanmıs;
+                    }
+
+                    <div class="tab-pane fade" id="profile1">
+                        <table cellpadding="0" cellspacing="0" border="0" class="display" id="example">
+                            <thead>
+                                <tr>
+
+                                    <th style="width:15%">
+                                        <p>Adı Soyad</p>
+                                    </th>
+                                    <th style="width:10%">
+                                        <p>E-Mail</p>
+                                    </th>
+                                    <th style="width:10%">
+                                        <p>Telefon</p>
+                                    </th>
+                                    <th style="width:10%">
+                                        <p>Tarih</p>
+                                    </th>
+
+                                    <th style="width:5%">
+                                        <p>Gör</p>
+                                    </th>
+                                    <th style="width:5%">
+                                        <p>Sil</p>
+                                    </th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @foreach (var item in model1)
+                                {
+                                    <tr>
+                                        <td style="border:solid 1px">
+                                            @item.NameSurname
+                                        </td>
+
+                                        <td style="border:solid 1px">
+                                            @item.Email
+
+                                        </td>
+                                        <td style="border:solid 1px">
+                                            @item.Phone
+                                        </td>
+                                        <td style="border:solid 1px">
+                                            @item.Date
+                                        </td>
+
+                                        <td style="border:solid 1px">
+                                            <a href="@Url.Action("readMessage","Home",new { id=item.id})" class="btn btn-primary">Gör</a>
+                                        </td>
+                                        <td style="border:solid 1px">
+                                            <a href="javascript:;" name="@item.id" class="btn btn-default demoSwal">Sil</a>
+                                        </td>
+
+
+
+                                    </tr>
+                                }
+                            </tbody>
+
+                        </table>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+    @*<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>*@
+    <script src="~/Areas/site/Content/Js/magnificPopup.js"></script>
+    <script src="~/Areas/site/Content/Js/sweetalert.min.js"></script>
+    <script src="~/Areas/site/Content/Js/bootstrap-notify.min.js"></script>
+    <script src="~/Areas/site/Content/Js/main.js"></script>
+    <script src="~/Areas/site/Content/Js/pace.min.js"></script>
+    <script src="~/Areas/site/Content/Js/bootstrap.min.js"></script>
+    <script src="~/Areas/site/Content/Js/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript">
+        $('.demoNotify').click(function () {
+            $.notify({
+                title: "Update Complete : ",
+                message: "Something cool is just updated!",
+                icon: 'fa fa-check'
+            }, {
+                    type: "info"
+                });
+        });
+
+        $('.demoSwal').click(function () {
+            var id = $(this).attr("name");
+            swal({
+                title: "Silmek İstediğinizden Emin misiniz?",
+                text: "",
+                type: "",
+                showCancelButton: true,
+                confirmButtonText: "Sil",
+                cancelButtonText: "İptal Et",
+                closeOnConfirm: false,
+                closeOnCancel: false
+            },
+                function (isConfirm) {
+                    if (isConfirm) {
+
+                        $.ajax({
+
+                            type: "POST",
+                            url: '/admin/Home/deleteMessage/' + id,
+
+                            success: function () {
+                                window.location.reload();
+                            },
+                        });
+
+                        //swal("Silindi", ".", "success");
+
+
+                    }
+
+                    else {
+                        swal("İptal Edildi", "", "error");
+                    }
+                });
+        });
+
+
+    </script>

@@ -1,0 +1,104 @@
+﻿@model AkademiKiraca.Models.UserMessage
+@using AkademiKiraca.Models
+@{
+    ViewBag.Title = "readMessage";
+    Layout = "~/Areas/admin/Views/Shared/Layout.cshtml";
+}
+
+<h2>Gelen Mesaj</h2>
+
+<br />
+<a href="@Url.Action("seeAll","Home")"><input type="submit" value="Geri Dön" /></a>
+<table class="table">
+    <tr>
+        <th>
+            Mesaj
+        </th>
+        <th>
+           <p>Adı Soyadı</p>
+        </th>
+        <th>
+           <p>Telefon</p>
+        </th>
+        <th>
+           <p>E-Mail</p>
+        </th>
+    
+    </tr>
+
+    <tr>
+        <td>
+            <textarea style="width:500px;height:150px">@Model.Message</textarea>
+        </td>
+        <td>
+            @Model.NameSurname
+        </td>
+        <td>
+            @Model.Phone
+        </td>
+        <td>
+            @Model.Email
+        </td>
+
+    
+       
+    </tr>
+
+</table>
+@if (Model.AnswerMessage == null)
+{
+    <table class="table">
+        <tr>
+            <th>
+                Yanıtla
+            </th>
+        </tr>
+
+        <tr>
+
+            @using (Html.BeginForm("answerMessage", "Home", new { id = Model.id }))
+            {
+
+                <td>
+                    @Html.TextArea("answer", new { @class = "form-control", @placeholder = "Yanıtla", @style = "width:500px; height:150px;" })
+                    @*<textarea style="width:500px;height:150px">@Model.Message</textarea>*@
+                </td>
+                <td>
+
+                    <input type="submit" value="Gönder" class="btn btn-default" style="margin-right:800px;" />
+                </td>
+            }
+        </tr>
+
+    </table>
+}
+
+@if (Model.AnswerMessage!=null)
+{
+    <table class="table">
+        <tr>
+            <th>
+                Verilen Yanıt
+            </th>
+            <th>
+                Cevaplayan Admin
+            </th>
+
+        </tr>
+
+        <tr>
+            <td>
+                @Html.TextAreaFor(model => model.AnswerMessage, new { @class = "form-control", @style = "width:500px; height:150px;", @readonly = "readonly" })
+
+
+            </td>
+            <td>
+                @{ var adminadi = (Admin)ViewBag.admin;}
+                @adminadi.NameSurname
+            </td>
+        </tr>
+
+    </table>
+                    }
+
+

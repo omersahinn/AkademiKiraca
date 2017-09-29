@@ -1,0 +1,163 @@
+﻿@model IEnumerable<AkademiKiraca.Models.SubCategory>
+@using AkademiKiraca.Models
+<html>
+<head>
+    <link rel="shortcut icon" href="~/Areas/site/Content/img/favicon.ico" type="image/x-icon">
+
+    <link href="~/Areas/site/Content/Css/Anasayfa.css" rel="stylesheet" />
+</head>
+<body>
+    <div>
+        <div class="menu">
+            <div class="menu1"></div>
+            <div class="menu2"></div>
+            <div class="menubutonlar">
+
+                <div class="r1">
+                    <div class="dropdown">
+                        <a href="">
+                            <p>HAKKIMIZDA</p>
+                        </a>
+
+                        <img src="~/Areas/site/Content/img/r1.png" class="dropbtn" usemap="#Map1">
+                        <div class="dropdown-content">
+                            @foreach (var item in Model)
+                            {
+
+                                if (item.Categoryid == 1)
+                                {
+
+
+                                    <a href="@Url.Action("subCategory","Home", new { id=item.id})">@item.SubcategoryName</a>
+                                }
+                            }
+
+
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="r2">
+                    <div class="dropdown">
+                        <a href="">
+                            <p>KAPSAM</p>
+                        </a>
+
+                        <img src="~/Areas/site/Content/img/r2.png" class="dropbtn" usemap="#Map2">
+                        <div class="dropdown-content">
+                            @foreach (var item in Model)
+                            {
+
+                                if (item.Categoryid == 2)
+                                {
+
+
+                                    <a href="@Url.Action("subCategory","Home", new { id=item.id})">@item.SubcategoryName</a>
+                                }
+                            }
+                       
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="r3">
+                    <div class="dropdown">
+                        <a href="">
+                            <p>FAALİYETLER</p>
+                        </a>
+
+                        <img src="~/Areas/site/Content/img/r3.png" class="dropbtn" usemap="#Map3">
+                        <div class="dropdown-content">
+                            @foreach (var item in Model)
+                            {
+
+                                if (item.Categoryid == 3)
+                                {
+
+
+                                    <a href="@Url.Action("subCategory","Home", new { id=item.id})">@item.SubcategoryName</a>
+                                }
+                            }
+
+
+
+                       
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="r4">
+                    <div class="dropdown">
+                        <a href="">
+                            <p>İÇ EĞİTİMCİLERİMİZ</p>
+                        </a>
+                        <map name="Map4" id="Map4">
+                            <area alt="" title="" href="#?3" shape="poly" coords="0,0,160,0,213,43,0,43" />
+                        </map>
+                        <img src="~/Areas/site/Content/img/r4.png" class="dropbtn" usemap="#Map4">
+                        <div class="dropdown-content">
+                            @foreach (var item in Model)
+                            {
+
+                                if (item.Categoryid == 4)
+                                {
+
+                                    if (item.SubcategoryName == "İç Eğitimcilerimiz")
+                                    {
+
+                                        <a href="@Url.Action("educatorList","Home", new { id=item.id})">@item.SubcategoryName</a>
+
+                                    }
+                                    else
+                                    {
+                                        <a href="@Url.Action("subCategory","Home", new { id=item.id})">@item.SubcategoryName</a>
+                                    }
+                                }
+                            }
+                         
+                        </div>
+                    </div>
+                </div>
+
+                <div class="r5">
+                    <a href="@Url.Action("News","Home")">
+                        <p>HABERLER</p>
+                    </a>
+                    <map name="Map5" id="Map5">
+                        <area alt="" title="" href="#?3" shape="poly" coords="0,0,160,0,213,43,0,43" />
+                    </map>
+                    <img src="~/Areas/site/Content/img/r5.png" usemap="#Map5">
+                </div>
+
+                @{ Category cat = new Category();}
+                @if (ViewBag.academy != null)
+                {
+                    cat = ViewBag.academy;
+
+                }
+
+
+                <div class="r6">
+                    <a href="@cat.Url">
+                        <i class="fa fa-user" aria-hidden="true"></i>
+                        <p>BENİM AKADEMİM</p>
+                    </a>
+                    <map name="Map6" id="Map6">
+                        <area alt="" title="" href="#?3" shape="poly" coords="70,0,300,0,300,150,0,50" />
+                    </map>
+                    <img src="~/Areas/site/Content/img/r6.png" usemap="#Map6">
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>

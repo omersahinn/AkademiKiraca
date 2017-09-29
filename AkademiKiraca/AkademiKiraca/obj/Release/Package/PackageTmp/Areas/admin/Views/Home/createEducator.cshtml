@@ -1,0 +1,86 @@
+﻿@model AkademiKiraca.Models.educatorModel
+
+@{
+    ViewBag.Title = "createEducator";
+    Layout = "~/Areas/admin/Views/Shared/Layout.cshtml";
+}
+
+
+
+
+  @using (Html.BeginForm("createEducator", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+  {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>İÇ EĞİTİMCİ</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.nameSurname, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.nameSurname, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.nameSurname, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.company, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.company, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.company, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.about, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.about, new { @cols = 100, @rows = 7 })
+                    @Html.ValidationMessageFor(model => model.about, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.picturePath, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+
+                    <img class="picture1" style="width:210px; height:240px" src="" />
+
+                    <br />
+
+                 <input style="opacity: 2; height:50px; width:195px; margin-top:20px;" size="25" name="image1" class="file1" type="file" />
+
+                    @Html.ValidationMessageFor(model => model.picturePath, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Kaydet" class="btn btn-danger" />
+                </div>
+            </div>
+
+        </div>
+    }
+
+    
+
+
+
+<script type="text/javascript">
+    $.noConflict();
+    $(document).ready(function () {
+       
+        $(".file1").change(function (e) {
+            var foto = e.target.files[0];
+            var reader = new FileReader(foto);
+            reader.readAsDataURL(foto);
+            reader.onload = function (evt) {
+                $(".picture1").attr("src", evt.target.result);
+            };
+
+        });
+
+        });
+</script>

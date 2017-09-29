@@ -1,0 +1,33 @@
+﻿@model IEnumerable<AkademiKiraca.Models.SocialMedya>
+@using AkademiKiraca.Models
+
+<div class="altkisim">
+    <div class="altgenel">
+
+        <div class="alt1">
+            @foreach (var item in Model)
+            {
+                <div class="iconlar">
+                    <a href="@item.Url" target="_blank"><img src="@item.Path" /></a>
+                </div>
+            }
+        </div>
+        <div class="alt2">
+            <ul>
+                <li>Hakkımızda</li>
+                <li style="color:#e41f28; font-size:17px;">|</li>
+                <li>Hizmetler</li>
+                <li style="color:#e41f28; font-size:17px;">|</li>
+                <li>Çözümler</li>
+                <li style="color:#e41f28; font-size:17px;">|</li>
+                <li>Destek</li>
+                <li style="color:#e41f28; font-size:17px;">|</li>
+                <li>İletişim</li>
+                <li style="color:#e41f28; font-size:17px;">|</li>
+                <li>Copyright© Kıraça Holding</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+

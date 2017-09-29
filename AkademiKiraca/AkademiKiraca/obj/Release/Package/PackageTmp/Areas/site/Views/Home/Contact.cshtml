@@ -1,0 +1,54 @@
+﻿@model AkademiKiraca.Models.UserMessageModel
+
+
+
+@using (Html.BeginForm("userMessage","Home"))
+{
+    @Html.AntiForgeryToken()
+   
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="altform">
+
+        <div class="form1">
+
+         
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.nameSurname, htmlAttributes: new { @class = "control-label col-md-3" ,style="width:30%"})
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.nameSurname, new { htmlAttributes = new { @class = "form-control", @Value=Session["user"] } })
+                    @Html.ValidationMessageFor(model => model.nameSurname, "", new { @class = "text-danger" })
+                </div>
+
+
+
+                @Html.LabelFor(model => model.phone, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.phone, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.phone, "", new { @class = "text-danger" })
+                </div>
+
+
+
+                @Html.LabelFor(model => model.email, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control" ,@style="width:300px"} })
+                    @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+            <div class="form2" style="width:600px;">
+
+                @Html.LabelFor(model => model.message, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.message, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.message, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <input type="submit" value="Gönder" class="btn btn-danger" style="margin:50px;" />
+
+
+        </div>
+        }

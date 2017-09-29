@@ -1,0 +1,26 @@
+﻿@model AkademiKiraca.Models.Category
+@{
+    ViewBag.Title = "Academy";
+    Layout = "~/Areas/admin/Views/Shared/Layout.cshtml";
+}
+
+
+@using (Html.BeginForm("Academy", "Home"))
+{
+
+
+<div class="row">
+        <h3 style="margin-left:20px;">Link Ekle</h3>
+    <div class="col-md-8 mb-20">
+        
+            @Html.TextArea("url", new { @cols = 10, @rows = 1, @class = "form-control", @placeholder = "Link Ekle"})
+          
+           
+    </div>
+</div>
+<div class="row mb-10">
+    <div class="col-md-12">
+        <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i> Kaydet</button>
+    </div>
+</div>
+}

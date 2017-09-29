@@ -1,0 +1,111 @@
+﻿@model IEnumerable<AkademiKiraca.Models.Educator>
+@{
+    ViewBag.Title = "educatorList";
+    Layout = "~/Areas/admin/Views/Shared/Layout.cshtml";
+}
+
+
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Akademi Kıraça</title>
+    <link href="~/Areas/site/Content/Css/style.css" rel="stylesheet" />
+    <link href="~/Areas/site/Content/Css/egitimciler.css" rel="stylesheet" />
+    @*<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>*@
+
+    <script src="~/Areas/site/Content/Js/jquery.vaccordion.js">jQuery.noConflict();</script>
+    @*<script src="~/Areas/site/Content/Js/Java.js">jQuery.noConflict();</script>*@
+    <script src="~/Areas/site/Content/Js/jquery.easing.1.3.js">jQuery.noConflict();</script>
+    <script src="~/Areas/site/Content/Js/jquery.mousewheel.js">jQuery.noConflict();</script>
+
+    <link rel="shortcut icon" href="~/Areas/site/Content/img/favicon.ico" type="image/x-icon">
+
+  
+
+    @*<link href="https://fonts.googleapis.com/css?family=Oswald:300,400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Oxygen:300,400,700" rel="stylesheet">*@
+
+
+
+
+    <div class="cizgi1"></div>
+
+    <div class="altsayfaustgorsel">
+        <img class="picture1" src="@ViewBag.picture">
+
+      
+    </div>
+
+    @using (Html.BeginForm("educatorImage", "Home", new { id = 15 }, FormMethod.Post, new { @id = "frmData", enctype = "multipart/form-data" }))
+            {
+        <div class="portlet-content">
+            <label for="lname">Resim Değiştir</label>
+            <input style="opacity: 2; margin-right:10px" size="35" name="upload" class="file" type="file" />
+            <input style="margin-top:10px;" type="submit" value='Kaydet' />
+        </div>
+
+         
+               
+           
+        if (TempData["uyarı"] != null)
+        {
+            <p>
+                <script>alert("Lütfen Bir Resim Seçiniz"); </script>
+            </p>
+        }
+    }
+
+
+    <br />
+    <br />
+    <br />
+    <a href="@Url.Action("createEducator","Home")"><input type="submit" class="btn btn-danger" value="Eğitimci Ekle"></a>
+
+    <div id="va-accordion" class="va-container">
+
+        <div class="altortagenel">
+
+            <div id="va-accordion" class="va-container">
+
+                <div class="va-wrapper">
+
+
+                    @foreach (var item in Model)
+            {
+
+                        <div class="va-slice va-slice-1">
+                            <div class="altbaslik">
+                                <h1 style="font-size:12px; font-weight:bolder;">@item.NameSurname - @item.Company 	&nbsp &nbsp | @Html.ActionLink("Düzenle", "editEducator", new { id = item.id }) | @Html.ActionLink("Sil", "deleteEducator", new { id = item.id },new { onclick = "return confirm('Silmek İstediğinizden Emin misiniz?');" })</h1>
+                            </div>
+                            <div class="cizgi3" style="margin-top:11px"></div>
+                            <div class="altortametin">
+                                <p>
+                                    @item.About
+                                </p>
+                            </div>
+                            <div class="altortagorsel">
+                                <img src="@item.ProfilPicture">
+                            </div>
+                        </div>
+
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+    <script type="text/javascript">
+        $(function () {
+            $('#va-accordion').vaccordion();
+        });
+
+
+    </script>
+

@@ -1,0 +1,85 @@
+﻿@model IEnumerable<AkademiKiraca.Models.SocialMedya>
+
+@{
+    ViewBag.Title = "socialMedya";
+    Layout = "~/Areas/admin/Views/Shared/Layout.cshtml";
+}
+
+<h4>Sosyal Medya</h4>
+
+
+@Html.AntiForgeryToken()
+
+@foreach (var item in Model)
+{
+    using (Html.BeginForm("socialMedya", "Home", new { id = item.id }))
+    {
+
+        <div class="form-horizontal">
+            <hr />
+            <img style="float:left; margin-right:20px;" src="@item.Path" />
+
+            @Html.TextArea("link",item.Url, new { @cols = 5, @rows = 1, @class = "form-control", @placeholder = "Link Ekle", @style = "width:80%" })
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Kaydet" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+}
+
+
+@*@using (Html.BeginForm("socialMedya", "Home", new { id = 2 }))
+{
+    <div class="form-horizontal">
+        <hr />
+        <img style="float:left; margin-right:20px;" src="/Areas/site/Content/img/i4.png" />
+        @Html.TextArea("link", new { @cols = 5, @rows = 1, @class = "form-control", @placeholder = "Link Ekle", @style = "width:80%" })
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Kaydet" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+@using (Html.BeginForm("socialMedya", "Home", new { id = 3}))
+{
+    <div class="form-horizontal">
+        <hr />
+
+        <img style="float:left; margin-right:20px;" src="/Areas/site/Content/img/i1.png" />
+        @Html.TextArea("link", new { @cols = 5, @rows = 1, @class = "form-control", @placeholder = "Link Ekle", @style = "width:80%" })
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Kaydet" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+@using (Html.BeginForm("socialMedya", "Home", new { id = 4 }))
+{
+    <div class="form-horizontal">
+        <hr />
+
+        <img style="float:left; margin-right:20px;" src="/Areas/site/Content/img/i3.png" />
+        @Html.TextArea("link", new { @cols = 5, @rows = 1, @class = "form-control", @placeholder = "Link Ekle", @style = "width:80%" })
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Kaydet" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+
+
+
+}
+
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>*@

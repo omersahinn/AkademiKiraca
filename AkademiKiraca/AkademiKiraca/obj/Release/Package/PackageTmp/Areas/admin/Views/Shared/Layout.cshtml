@@ -1,0 +1,77 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+
+
+    <script src="~/Areas/site/Content/Js/plugin.js"></script>
+    <script src="~/Areas/site/Content/Js/slate.portlet.js"></script>
+    <script src="~/Areas/site/Content/Js/slate.js"></script>
+    <script src="~/Areas/site/Content/Js/jquery.1.4.2.min.js"></script>
+    <script src="~/Areas/site/Content/Js/Jquery.js"></script>
+    <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script src="~/Areas/site/Content/Js/jquery-1.11.3.min.js"></script>
+    <script src="~/Areas/admin/Content/js/jquery-2.1.4.min.js"></script>
+    <script src="~/Areas/admin/Content/js/bootstrap.min.js"></script>
+    <script src="~/Areas/admin/Content/js/plugins/pace.min.js"></script>
+    <script src="~/Areas/admin/Content/js/main.js"></script>
+
+    <link href="~/Areas/site/Content/Css/custom.css" rel="stylesheet" />
+    <link href="~/Areas/site/Content/Css/dataTable.css" rel="stylesheet" />
+    <link href="~/Areas/site/Content/Css/plugin.css" rel="stylesheet" />
+    <link href="~/Areas/site/Content/Css/Site.css" rel="stylesheet" />
+    <link href="~/Areas/site/Content/Css/master.css" rel="stylesheet" />
+    <link href="~/Areas/site/Content/Css/screen.css" rel="stylesheet" />
+    <link href="~/Areas/site/Content/Css/iletisim.css" rel="stylesheet" />
+
+  
+
+    <!-- CSS-->
+
+
+    <link href="~/Areas/admin/Content/css/main.css" rel="stylesheet" />
+    <!-- Font-icon css-->
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Akademi Kıraça Admin</title>
+
+    <link rel="shortcut icon" href="site/img/favicon.ico" type="image/x-icon">
+
+</head>
+<body class="sidebar-mini fixed">
+    <div class="wrapper"  style="z-index:999">
+        <header class="main-header hidden-print" >
+            <a class="logo" href="@Url.Action("Index")">Akademi Kıraça</a>
+
+            <nav class="navbar navbar-static-top">
+
+              <a class="sidebar-toggle" href="#" data-toggle="offcanvas"></a>      
+                
+                <div class="navbar-custom-menu" style="z-index:999;">
+                    <ul class="top-nav">                  
+                 @{Html.RenderAction("getMessage");}
+                        <li class="dropdown">
+
+                            <a class="dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user fa-lg"></i></a>
+                            <ul class="dropdown-menu settings-menu" style="list-style-type:none;">
+                                <li style="list-style-type:none; "><a href="@Url.Action("Settings")"><i class="fa fa-cog fa-lg"></i> Ayarlar</a></li>
+                                <li style="list-style-type:none;"><a href="@Url.Action("LogOut")"><i class="fa fa-sign-out fa-lg"></i> Çıkış</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        @{ Html.RenderAction("getCategory", "Home");}
+    </div>
+    <div class="content-wrapper">
+        @RenderBody()
+    </div>
+</body>
+</html>

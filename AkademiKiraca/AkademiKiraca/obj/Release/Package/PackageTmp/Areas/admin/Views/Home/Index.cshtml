@@ -1,0 +1,104 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/admin/Views/Shared/Layout.cshtml";
+}
+
+
+    <div class="content-wrapper" style="margin-left:0px; float:left;">
+
+        <div class="row" style="width:1000px; z-index:1;">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body"><h4> İşlemlerinizi Sol Taraftaki Menülerden Yapabilirsiniz.</h4></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+@*<div class="content-wrapper" style="margin-left:0px;">
+    <div class="page-title">
+        <div>
+            <h1><i class="fa fa-calendar"></i> Takvim</h1>
+            <p></p>
+        </div>
+        <div>
+            <ul class="breadcrumb">
+                <li><i class="fa fa-home fa-lg"></i></li>
+                <li><a href="#">Takvim</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card row">
+                <div class="col-md-3">
+                    <div id="external-events" style="background-color:cyan; border-radius:10px; color:white;">
+                    
+                        <p class="animated-checkbox mt-20" style="color:white">
+                            <label>
+                                
+                            </label>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div id="calendar"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+ 
+<script src="~/Areas/site/Content/Js/jquery-2.1.4.min.js"></script>
+<script src="~/Areas/site/Content/Js/bootstrap.min.js"></script>
+<script src="~/Areas/site/Content/Js/pace.min.js"></script>
+<script src="~/Areas/site/Content/Js/main.js"></script>
+<script src="~/Areas/site/Content/Js/moment.min.js"></script>
+<script src="~/Areas/site/Content/Js/jquery-ui.custom.min.js"></script>
+<script src="~/Areas/site/Content/Js/fullcalendar.min.js"></script>
+
+<script type="text/javascript">
+      $(document).ready(function() {
+
+      	$('#external-events .fc-event').each(function() {
+
+      	
+      		$(this).data('event', {
+      			title: $.trim($(this).text()), 
+      			stick: true 
+      		});
+
+      	
+      		$(this).draggable({
+      			zIndex: 999,
+      			revert: true,      
+      			revertDuration: 0 
+      		});
+
+      	});
+
+      	$('#calendar').fullCalendar({
+      		header: {
+      			left: 'prev,next today',
+      			center: 'title',
+      			right: 'month,agendaWeek,agendaDay'
+      		},
+      		editable: true,
+      		droppable: true, 
+      		drop: function() {
+      			
+      			if ($('#drop-remove').is(':checked')) {
+      			
+      				$(this).remove();
+      			}
+      		}
+      	});
+
+
+      });
+</script>*@
+ 

@@ -1,0 +1,103 @@
+﻿@model IEnumerable<AkademiKiraca.Models.Picture>
+
+@{
+    ViewBag.Title = "uploadPicture";
+    Layout = "~/Areas/admin/Views/Shared/Layout.cshtml";
+}
+
+
+
+<div>
+    <a href="@Url.Action("newsAdmin")"><input value="Geri Dön" class="btn btn-default" style="margin-bottom:20px;margin-left:10px" /></a>
+</div>
+
+
+    <div id="gallery_wrapper" class="portlet x8">
+        <div class="portlet-header">
+            <h4>Resimler</h4>
+        </div>
+
+        <div class="portlet-content">
+
+            <br />
+            <a name="plugin"></a>
+
+            <ul class="gallery">
+                @foreach (var item in Model)
+            {
+                    <li id="@item.id" style="margin-left:20px; list-style-type:none">
+                        <img alt="" src="/images/100x100/@item.Path" />
+
+                        <div class="actions" style="padding-bottom:50px;">
+                            <a class="btn btn-orange btn-small" rel="facebox" href="/Areas/site/Content/img/@item.Path">Göster</a>
+
+                            <a href="javascript:;" name="@item.id" class="btn btn-grey btn-small delete">Sil</a>
+                        </div>
+
+                    </li>
+
+                }
+            </ul>
+            <br />
+        </div>
+    </div>
+
+
+    <div class="portlet x4">
+
+        <div class="portlet-content">
+
+
+            @using (Html.BeginForm("upload", "Home", new { id = ViewData["id"] }, FormMethod.Post, new { @id = "frmData", enctype = "multipart/form-data" }))
+            {
+                <div class="portlet-content">
+                    <label for="lname">Resim Ekle</label>
+                    <input style="opacity: 2;" size="35" name="upload" class="file" type="file" />
+                </div>
+
+                <div class="buttonrow">
+                    <input type="submit" value='Kaydet' />
+                </div>
+
+                if (TempData["uyarı"] != null)
+                {
+                    <p><script>alert("Lütfen Bir Resim Seçiniz"); </script></p>
+                }
+            }
+
+
+        </div>
+    </div>
+
+
+
+<script src="~/Areas/site/Content/Js/jquery-migrate-1.4.1.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("a.delete").click(function () {
+            var id = $(this).attr("name");
+
+            $.ajax({
+                url: '/admin/Home/deletePicture?id=' + id,
+                type: 'post',
+                dataType: 'html',
+                data: '{}',
+                success: function (data) {
+                    $("li#" + data).hide();
+                }
+            });
+        });
+     
+        $("#frmData").ajaxForm({
+            iframe: true,
+            dataType: 'json',
+            success: function (data) {
+               
+                $("ul.gallery").append(data);
+            }
+        });
+
+    });
+   
+
+</script>

@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="KiracaDb" Class="DbDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=LENOVO-PC\SQLEXPRESS;Initial Catalog=KiracaDb;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="KiracaDbConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.News" Member="News">
+    <Type Name="New">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Title" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="ContentNews" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ShortTitle" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="New_Picture" Member="Pictures" ThisKey="id" OtherKey="Newsid" Type="Picture" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Picture" Member="Pictures">
+    <Type Name="Picture">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Position" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SubCategoryid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Path" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="Newsid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="New_Picture" Member="New" ThisKey="Newsid" OtherKey="id" Type="New" IsForeignKey="true" />
+      <Association Name="SubCategory_Picture" Member="SubCategory" ThisKey="SubCategoryid" OtherKey="id" Type="SubCategory" IsForeignKey="true" />
+      <Association Name="SubCategory_Picture1" Member="SubCategory1" ThisKey="SubCategoryid" OtherKey="id" Type="SubCategory" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Educators" Member="Educators">
+    <Type Name="Educator">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="NameSurname" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="Company" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="About" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ProfilPicture" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Category" Member="Categories">
+    <Type Name="Category">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CategoryName" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="Url" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="Category_SubCategory" Member="SubCategories" ThisKey="id" OtherKey="Categoryid" Type="SubCategory" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SocialMedya" Member="SocialMedyas">
+    <Type Name="SocialMedya">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="Url" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Path" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SubCategory" Member="SubCategories">
+    <Type Name="SubCategory">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SubcategoryName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Categoryid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="SubCategory_Picture" Member="Pictures" ThisKey="id" OtherKey="SubCategoryid" Type="Picture" />
+      <Association Name="SubCategory_Picture1" Member="Pictures1" ThisKey="id" OtherKey="SubCategoryid" Type="Picture" />
+      <Association Name="Category_SubCategory" Member="Category" ThisKey="Categoryid" OtherKey="id" Type="Category" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UserMessage" Member="UserMessages">
+    <Type Name="UserMessage">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="NameSurname" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Phone" Type="System.String" DbType="NVarChar(13)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Message" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="IsReply" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsRead" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Adminid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="AnswerMessage" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="Admin_UserMessage" Member="Admin" ThisKey="Adminid" OtherKey="id" Type="Admin" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Admin" Member="Admins">
+    <Type Name="Admin">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="NameSurname" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Password" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Association Name="Admin_UserMessage" Member="UserMessages" ThisKey="id" OtherKey="Adminid" Type="UserMessage" />
+    </Type>
+  </Table>
+</Database>

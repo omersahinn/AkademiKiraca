@@ -1,0 +1,55 @@
+﻿@model AkademiKiraca.Models.newsModel
+
+@{
+    ViewBag.Title = "News";
+    Layout = "~/Areas/site/Views/Shared/Layout.cshtml";
+}
+
+
+
+    <div class="cizgi1"></div>
+
+    <div class="altsayfaustgorsel">
+        <img src="Kaynak/ag30.jpg">
+    </div>
+    <div class="timeline">
+        <script src="js/bc.js" data-page-id="5"></script>
+        <div class="timeok" style="background-image:url(Kaynak/ok1.jpg)"></div>
+
+    </div>
+    <div class="altbaslik">
+
+        <h1>Haberler</h1>
+
+    </div>
+    <div class="cizgi3" style="background-color:#b2d234;"></div>
+
+    <div class="altortagenel">
+
+        <div class="kutulargenel">
+
+            <div class="altsagicerik">
+                <p>
+                    <span class="boldbaslik">
+                        @Model.title
+                    </span>
+                    <br><br>
+                    @Model.contentNews
+                </p>
+                <div class="popup-gallery">
+
+                    @foreach (var item in Model.newsPicture)
+                    {
+
+
+                        <a href="@item.Path" title="" class="hoverZoomLink">
+                            <img src="@item.Path" width="75" height="75">
+                        </a>
+                    }
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>

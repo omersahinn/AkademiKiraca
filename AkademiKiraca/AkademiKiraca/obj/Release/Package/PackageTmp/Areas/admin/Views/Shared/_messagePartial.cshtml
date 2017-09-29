@@ -1,0 +1,28 @@
+﻿@model IEnumerable<AkademiKiraca.Models.UserMessage>
+
+
+
+<li class="dropdown notification-menu">
+    <a class="dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-envelope" aria-hidden="true"></i></a>
+    <ul class="dropdown-menu">
+        <li style="list-style-type:none;"  class="not-head">@ViewBag.okunmamısMessage adet okunmamış mesajınız var</li>
+
+        @foreach (var item in Model)
+        {
+        
+
+        <li style="list-style-type:none;">
+            <a class="media" href="@Url.Action("readMessage","Home",new { id=item.id})">
+                <span class="media-left media-icon"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x text-primary"></i><i class="fa fa-envelope fa-stack-1x fa-inverse"></i></span></span>
+                <div class="media-body"><span class="block">@item.NameSurname adlı kullanıcı size mesaj gönderdi</span></div>
+                <span>@item.Date.Value.ToString("dd-MM-yyyy" )</span>
+            </a>
+        </li>
+
+        }
+
+        <li style="list-style-type:none;" class="not-footer"><a href="@Url.Action("seeAll","Home")">Tüm Mesajları Gör</a></li>
+
+    </ul>
+</li>
+

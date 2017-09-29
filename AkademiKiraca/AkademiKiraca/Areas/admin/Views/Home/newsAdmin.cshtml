@@ -1,0 +1,42 @@
+﻿@model IEnumerable<AkademiKiraca.Models.New>
+
+@{
+    ViewBag.Title = "newsAdmin";
+    Layout = "~/Areas/admin/Views/Shared/Layout.cshtml";
+}
+
+<h2>HABERLER</h2>
+<br />
+<br />
+<p>
+   
+    <a href="@Url.Action("createNews","Home")"><input value="Haber Ekle" type="submit" class="btn btn-danger" /></a>
+</p>
+<br />
+
+<table class="table">
+    <tr>   
+        <th>
+            <h1 >Başlık</h1>
+       </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr style="border-style:ridge">
+        <td style=" font-size:20px; font-family:'Times New Roman', Times, serif">
+           @item.ShortTitle  
+        </td>
+      
+        <td style="border-style:outset">
+            <a href="@Url.Action("uploadPicture","Home",new { id=item.id})"><input value="Resim Ekle" type="submit" class="btn btn-default" /></a> 	&nbsp;&nbsp; &nbsp;
+
+            <a href="@Url.Action("editNews","Home",new { id=item.id})"><input value="Düzenle" type="submit" class="btn btn-default" /></a> 	&nbsp;
+         
+            <a href="@Url.Action("deleteNews","Home",new { id=item.id})"><input type="submit" class="btn btn-default" value="Sil" onclick="return confirm('Bu Haberi Silmek İstediğinizden Emin misiniz?');"></a>
+
+        </td>
+    </tr>
+}
+
+</table>

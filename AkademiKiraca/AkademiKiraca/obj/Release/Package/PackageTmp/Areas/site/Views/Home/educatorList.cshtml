@@ -1,0 +1,87 @@
+﻿@model IEnumerable<AkademiKiraca.Models.Educator>
+
+@{
+    ViewBag.Title = "educatorList";
+    Layout = "~/Areas/site/Views/Shared/Layout.cshtml";
+}
+
+
+
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Akademi Kıraça</title>
+
+
+
+    <link href="~/Areas/site/Content/Css/egitimciler.css" rel="stylesheet" />
+    <link href="~/Areas/site/Content/Css/style.css" rel="stylesheet" />
+   
+    <link href="https://fonts.googleapis.com/css?family=Oswald:300,400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Oxygen:300,400,700" rel="stylesheet">
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="~/Areas/site/Content/Js/Java.js"></script>
+    <script src="~/Areas/site/Content/Js/jquery.easing.1.3.js"></script>
+    <script src="~/Areas/site/Content/Js/jquery.mousewheel.js"></script>
+    <script src="~/Areas/site/Content/Js/jquery.vaccordion.js">jQuery.noConflict();</script>
+
+
+
+
+    <div class="cizgi1"></div>
+
+    <div class="altsayfaustgorsel">
+        <img src="@ViewBag.picture">
+    </div>
+    <div class="timeline">
+        <a class="bc_link1" href="@Url.Action("Index","Home")">Anasayfa</a>
+        <a class="bc_link2" href="@Url.Action("educatorList","Home")">İç Eğitimcilerimiz</a>
+        <a class="bc_link3" href="@Url.Action("educatorList","Home")">İç Eğitimcilerimiz</a>
+        <div class="timeok" style="background-image:url(/Areas/site/Content/img/ok4.jpg)"></div>
+    </div>
+   
+    <div class="altortagenel">
+
+        <div id="va-accordion" class="va-container">
+            <div class="va-nav">
+                <span class="va-nav-prev">Previous</span>
+                <span class="va-nav-next">Next</span>
+            </div>
+            <div class="va-wrapper">
+
+                @foreach (var item in Model)
+                {
+                    <div class="va-slice va-slice-1" >
+
+
+                        <div class="altbaslik">
+                            <h1 style="font-size:15px; font-weight:bolder;">@item.NameSurname - @item.Company</h1>
+                        </div>
+                        <div class="cizgi3" style="margin-top:11px"></div>
+                        <div class="altortametin">
+                            <p>
+                                @item.About
+                            </p>
+                        </div>
+                        <div class="altortagorsel">
+                            <img src="@item.ProfilPicture">
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+
+    <script type="text/javascript">
+      
+        $(function () {
+            $('#va-accordion').vaccordion();
+        });
+    </script>
+
+
